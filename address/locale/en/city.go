@@ -23,12 +23,11 @@ func CityPrefix() string {
 	return cityPrefixes[n]
 }
 
-// CitySuffix returns a single random city suffix value from the array.
-// Possible values include town, ton, land, ville, berg, burgh, borough, bury,
+// CitySuffixes returns a slice of possible random city suffix values from the
+// array. Values include: town, ton, land, ville, berg, burgh, borough, bury,
 // view, port, mouth, stad, furt, chester, mouth, fort, haven, side, and shire.
-func CitySuffix() string {
-	rand.Seed(time.Now().Unix())
-	citySuffixes := [19]string{
+func CitySuffixes() []string {
+	return []string{
 		"town",
 		"ton",
 		"land",
@@ -49,6 +48,14 @@ func CitySuffix() string {
 		"side",
 		"shire",
 	}
+}
+
+// CitySuffix returns a single random city suffix value from the array.
+// Possible values include town, ton, land, ville, berg, burgh, borough, bury,
+// view, port, mouth, stad, furt, chester, mouth, fort, haven, side, and shire.
+func CitySuffix() string {
+	rand.Seed(time.Now().Unix())
+	citySuffixes := CitySuffixes()
 
 	n := rand.Int() % len(citySuffixes)
 	return citySuffixes[n]
